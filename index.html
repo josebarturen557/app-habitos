@@ -199,7 +199,7 @@
   <div class="stats-row">
     <div class="stat-card"><div class="stat-val pts" id="stat-pts">0</div><div class="stat-lbl">Puntos</div></div>
     <div class="stat-card"><div class="stat-val streak" id="stat-streak">0d</div><div class="stat-lbl">Mejor racha</div></div>
-    <div class="stat-card"><div class="stat-val today" id="stat-today">0/5</div><div class="stat-lbl">Hoy</div></div>
+    <div class="stat-card"><div class="stat-val today" id="stat-today">0/6</div><div class="stat-lbl">Hoy</div></div>
   </div>
 
   <div class="section-title">Hábitos de hoy</div>
@@ -222,6 +222,7 @@ const HABITS = [
   { id:'exercise', name:'Ejercicio',    sub:'30 min de actividad física',  icon:'💪', color:'#B71C1C', bg:'rgba(183,28,28,0.15)',  xp:90,  pts:55  },
   { id:'food',     name:'Alimentación', sub:'Come saludable hoy',          icon:'🥗', color:'#1B5E20', bg:'rgba(27,94,32,0.15)',   xp:70,  pts:45  },
   { id:'order',    name:'Orden',        sub:'Ordena tu espacio',           icon:'🧹', color:'#6A1B9A', bg:'rgba(106,27,154,0.15)', xp:60,  pts:40  },
+  { id:'vitalidad', name:'Vitalidad',  sub:'',                            icon:'🔥', color:'#E65100', bg:'rgba(230,81,0,0.15)',   xp:85,  pts:52  },
 ];
 
 const LEVELS = [
@@ -302,7 +303,7 @@ function toggle(hid) {
     STATE.totalPts += h.pts;
     STATE.totalXP += h.xp;
     const doneHoy = HABITS.filter(x => STATE.history[today][x.id]).length;
-    if (doneHoy === 5) {
+    if (doneHoy === 6) {
       STATE.perfectDays = (STATE.perfectDays||0) + 1;
       STATE.totalPts += 100; STATE.totalXP += 150;
       showToast('¡Día perfecto! +150 XP bonus 💎');
@@ -331,7 +332,7 @@ function render() {
   document.getElementById('xp-fill').style.width = pct + '%';
   document.getElementById('stat-pts').textContent = STATE.totalPts;
   document.getElementById('stat-streak').textContent = STATE.bestStreak + 'd';
-  document.getElementById('stat-today').textContent = `${doneHoy}/5`;
+  document.getElementById('stat-today').textContent = `${doneHoy}/6`;
 
   const list = document.getElementById('habits-list');
   list.innerHTML = '';
